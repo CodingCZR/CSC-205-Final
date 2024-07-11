@@ -16,8 +16,9 @@ These files include template code to get started with the menu and empty class f
 
 # Main.java
 
-This file contains the main menu program that allows the user to select and run each of the three mini-projects. Updating the `author` variable with my name and for privacy reasons, my school ID will be removed from this project. 
+This file contains the main menu program that allows the user to select and run each of the three mini-projects. Updating the `author` variable with my name and for MEID. ( privacy reasons, my school ID will be removed from this project.)
 
+### Provided Template Code
 ```java
 import java.util.Scanner;
 
@@ -97,7 +98,7 @@ Suitor #5, Bashful, eliminated.
 Suitor #1, Doc, eliminated.
 The correct suitor was #4, Sleepy.
 ```
-
+### Provided Template Code
 ```java
 import java.util.Scanner;
 
@@ -224,7 +225,7 @@ This mini-project simulates a haunted house where the user must navigate through
 - Output possible moves in the north, south, east, or west direction.
 
 ### Sample Output
-
+```
 Escape the Haunted House.
 You are in room A of the Haunted House. You can go east or south.
 N
@@ -239,7 +240,7 @@ You are in room F of the Haunted House. You can go north or east.
 .
 You are in room L of the Haunted House. You made it out alive!
 ```
-
+### Provided Template Code
 ```java
 import java.util.Scanner;
 
@@ -447,7 +448,7 @@ There were 38 positive words, 111 negative words and 200 total words.
 That's 19% positive and 56% negative. Overall the file's sentiment was negative.
 Would you like to analyze another file Y/N? N
 ```
-
+### Provided Template Code
 ```java
 import java.util.Scanner;
 
@@ -579,20 +580,7 @@ private static void analyzeFile(String filename) {
   - It determines the overall sentiment of the file based on the calculated percentages.
 
 
-## Instructions for Running the Project
-
-1. Ensure you have all four Java files (`Main.java`, `Suitor.java`, `HauntedHouse.java`, `Sentiment.java` as well as the `.txt` files avaliable) in the same directory.
-2. Compile the files using the Java compiler:
-   ```sh
-   javac Main.java Suitor.java HauntedHouse.java Sentiment.java
-   ```
-3. Run the `Main` program:
-   ```sh
-   java Main
-   ```
-4. Follow the menu prompts to run each mini-project.
-
 ---
 
-This README provides an overview of the CSC205 final project, including the main program and the detailed requirements for each mini-project. Under my project, I obtained a 100% on the final! 
+This README provides an overview of the CSC205 final project, including the main program and the detailed requirements for each mini-project. Under my project, I obtained a 100% on the final! I learned a lot during this school year and looking forward to creating bigger and greater projects!
 

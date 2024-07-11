@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-		final static String author = "Cesar Miranda/Ces2127841"; // change this to your name/MEID
+		final static String author = "Cesar Miranda"; // change this to your name/MEID
 
 		public static void main(String[] args) {
 				Scanner scnr = new Scanner(System.in);
