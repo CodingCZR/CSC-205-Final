@@ -1,22 +1,22 @@
-```markdown
+
 # CSC205 Final Project
 
-Welcome to the final project for CSC205. This project consists of three separate programming mini-projects, each implemented as part of a main program controlled by a menu. Below are the steps to get you started and a detailed explanation of each mini-project.
+Welcome to my final project for CSC205. This project consists of three separate programming mini-projects, each implemented as part of a main program controlled by a menu. Below are the detailed explanation and requirments of each mini-projet, as well as explination for my code.
 
 ## Getting Started
 
-To begin, download and extract the provided zipped folder containing the following four Java files:
+To begin, we were instructed to download and extract the provided zipped folder containing the following four Java files:
 
 - `Main.java`
 - `Suitor.java`
 - `HauntedHouse.java`
 - `Sentiment.java`
 
-These files include template code to help you get started with the menu and empty class files for each of the three mini-projects.
+These files include template code to get started with the menu and empty class files for each of the three mini-projects.
 
-## Main.java
+# Main.java
 
-This file contains the main menu program that allows the user to select and run each of the three mini-projects. Update the `author` variable with your name and MEID.
+This file contains the main menu program that allows the user to select and run each of the three mini-projects. Updating the `author` variable with my name and for privacy reasons, my school ID will be removed from this project. 
 
 ```java
 import java.util.Scanner;
@@ -68,7 +68,7 @@ public class Main {
 }
 ```
 
-## Suitor.java
+# Suitor.java Information and Requirements
 
 This mini-project involves an algorithm to determine which suitor will marry Prince Val in the city of Atlantis. The suitors are eliminated in a specific sequence until only one remains.
 
@@ -119,7 +119,7 @@ public class Suitor {
 
 The `Suitor.java` file implements an algorithm to determine which suitor will marry Prince Val in the city of Atlantis. Below is an explanation of how the code works and what each part does:
 
-## Inner Class `SuitorNode`
+### Inner Class `SuitorNode`
 
 ```java
 static class SuitorNode {
@@ -137,7 +137,7 @@ static class SuitorNode {
 
 - `SuitorNode` represents each suitor in the linked list. It stores the suitor's number, name, and a reference to the next suitor in the list.
 
-## `start` Method
+### `start` Method
 
 ```java
 public static void start(Scanner scnr) {
@@ -214,12 +214,7 @@ public static void start(Scanner scnr) {
 4. **Output**: 
    - Throughout the process, the program prints which suitor is eliminated and finally displays the selected suitor who will marry Prince Val.
 
----
-
-This explanation provides a detailed overview of how the `Suitor.java` file implements the selection process for Prince Val's suitor using a circular linked list and an elimination algorithm.
-```
-
-## HauntedHouse.java
+# HauntedHouse.java Information and Requirements
 
 This mini-project simulates a haunted house where the user must navigate through rooms to find the exit.
 
@@ -229,7 +224,7 @@ This mini-project simulates a haunted house where the user must navigate through
 - Output possible moves in the north, south, east, or west direction.
 
 ### Sample Output
-```
+
 Escape the Haunted House.
 You are in room A of the Haunted House. You can go east or south.
 N
@@ -261,7 +256,169 @@ public class HauntedHouse {
 }
 ```
 
-## Sentiment.java
+# HauntedHouse.java Explanation
+
+The `HauntedHouse.java` file simulates a navigation game through a haunted house using a graph representation with rooms interconnected as nodes.
+
+### `start` Method
+
+```java
+public static void start(Scanner scnr) {
+    System.out.println("\nEscape the Haunted House.");
+
+    // Create nodes for each room
+    Node A = new Node("A (Start)");
+    Node B = new Node("B");
+    Node C = new Node("C");
+    Node D = new Node("D");
+    Node E = new Node("E");
+    Node F = new Node("F");
+    Node G = new Node("G");
+    Node H = new Node("H");
+    Node I = new Node("I");
+    Node J = new Node("J");
+    Node K = new Node("K");
+    Node L = new Node("L (Exit)");
+
+    // Define connections (edges) allowing the player to move between rooms
+    A.east = B;
+    A.south = E;
+
+    B.west = A;
+    B.east = C;
+    B.south = F;
+
+    C.west = B;
+    C.east = D;
+
+    D.west = C;
+    D.south = H;
+
+    E.north = A;
+    E.south = I;
+
+    F.north = B;
+    F.east = G;
+
+    G.west = F;
+    G.south = K;
+
+    H.north = D;
+
+    J.west = I;
+    I.north = E;
+    I.east = J;
+
+    K.north = G;
+    K.east = L;
+
+    L.west = K;
+
+    // Setting starting point as room A
+    Node currentRoom = A;
+
+    // Start navigation
+    navigate(currentRoom, scnr);
+}
+```
+
+### Explanation
+
+1. **Room Initialization**: 
+   - The `start` method initializes each room in the haunted house as a `Node` object and defines connections (`north`, `south`, `east`, `west`) between them to create a graph-like structure.
+
+2. **Navigation Start**: 
+   - It sets the starting point (`currentRoom`) as room A and calls the `navigate` method to begin navigating through the rooms based on user input.
+
+### `Node` Class
+
+```java
+static class Node {
+    String name;
+    Node north;
+    Node south;
+    Node east;
+    Node west;
+
+    public Node(String name) {
+        this.name = name;
+        this.north = null;
+        this.south = null;
+        this.east = null;
+        this.west = null;
+    }
+}
+```
+
+### Explanation
+
+- **Node Definition**: 
+  - The `Node` class represents each room in the haunted house.
+  - It stores the room's name and references (`north`, `south`, `east`, `west`) to adjacent rooms (nodes).
+
+### `navigate` Method
+
+```java
+private static void navigate(Node current, Scanner scnr) {
+    while (current != null) {
+        System.out.println("Current room: " + current.name);
+
+        // Display available navigation options
+        if (current.north != null) {
+            System.out.println("Option: Go North to " + current.north.name);
+        }
+        if (current.south != null) {
+            System.out.println("Option: Go South to " + current.south.name);
+        }
+        if (current.east != null) {
+            System.out.println("Option: Go East to " + current.east.name);
+        }
+        if (current.west != null) {
+            System.out.println("Option: Go West to " + current.west.name);
+        }
+
+        // Ask user for direction
+        System.out.print("Enter direction (north/south/east/west): ");
+        String direction = scnr.nextLine().trim().toLowerCase();
+
+        // Update current node based on user input
+        switch (direction) {
+            case "north":
+                current = current.north;
+                break;
+            case "south":
+                current = current.south;
+                break;
+            case "east":
+                current = current.east;
+                break;
+            case "west":
+                current = current.west;
+                break;
+            default:
+                System.out.println("Invalid direction. Try again.");
+        }
+
+        // Check if the user has reached the exit
+        if (current != null && current.name.equals("L (Exit)")) {
+            System.out.println("Congratulations! You've escaped the haunted house.");
+            break;
+        }
+    }
+}
+```
+
+### Explanation
+
+- **Navigation Logic**: 
+  - The `navigate` method simulates the navigation through rooms.
+  - It displays the current room and available directions to move (`north`, `south`, `east`, `west`).
+  - It prompts the user for a direction and updates the `current` node accordingly.
+  - It checks if the user has reached the exit (`L (Exit)`) and prints a congratulatory message upon successful escape.
+
+---
+
+# Sentiment.java Information and Requirements
 
 This mini-project performs sentiment analysis on a user-provided text file, determining if the text has a positive, negative, or neutral sentiment.
 
@@ -307,9 +464,124 @@ public class Sentiment {
 }
 ```
 
+## Sentiment.java Explanation
+
+The `Sentiment.java` file performs sentiment analysis on text files using predefined sets of positive and negative words.
+
+### `start` Method
+
+```java
+public static void start(Scanner scnr) {
+    System.out.println("\nSentiment Analysis.");
+
+    // Load positive and negative words
+    loadWords("positive.txt", positiveWords);
+    loadWords("negative.txt", negativeWords);
+
+    System.out.println(positiveWords.size() + " Positive Words Successfully Loaded.");
+    System.out.println(negativeWords.size() + " Negative Words Successfully Loaded.");
+
+    // Ask user for text file to analyze
+    boolean analyzeMore = true;
+    while (analyzeMore) {
+        System.out.print("\nEnter the name of the text file to perform sentiment analysis: ");
+        String filename = scnr.nextLine();
+        analyzeFile(filename);
+
+        System.out.print("Would you like to analyze another file Y/N? ");
+        String response = scnr.nextLine().trim().toUpperCase();
+        analyzeMore = response.equals("Y");
+    }
+}
+```
+
+### Explanation
+
+1. **Initialization**: 
+   - The `start` method begins by loading positive and negative words from `positive.txt` and `negative.txt` files into `HashSet` collections (`positiveWords` and `negativeWords`).
+
+2. **User Interaction**: 
+   - It prompts the user to enter the name of a text file (`filename`) for sentiment analysis and repeatedly asks if the user wants to analyze another file.
+
+3. **Method Calls**: 
+   - It calls `loadWords` to populate `positiveWords` and `negativeWords` with words from the respective files.
+   - It calls `analyzeFile` to perform sentiment analysis on the user-provided text file.
+
+### `loadWords` Method
+
+```java
+private static void loadWords(String filename, HashSet<String> wordSet) {
+    try (Scanner fileScanner = new Scanner(new File(filename))) {
+        while (fileScanner.hasNextLine()) {
+            String word = fileScanner.nextLine().trim();
+            if (!word.startsWith(";") && !word.isEmpty()) {
+                wordSet.add(word);
+            }
+        }
+    } catch (FileNotFoundException e) {
+        System.out.println("File not found: " + filename);
+    }
+}
+```
+
+### Explanation
+
+- **File Loading**: 
+  - The `loadWords` method loads words from the specified `filename` into the `wordSet` `HashSet`. It skips lines starting with ';' and ignores empty lines.
+
+### `analyzeFile` Method
+
+```java
+private static void analyzeFile(String filename) {
+    int positiveCount = 0;
+    int negativeCount = 0;
+    int totalCount = 0;
+
+    try (Scanner fileScanner = new Scanner(new File(filename))) {
+        while (fileScanner.hasNext()) {
+            String word = fileScanner.next().toLowerCase().replaceAll("[^a-zA-Z]", "");
+            if (!word.isEmpty()) {
+                totalCount++;
+                if (positiveWords.contains(word)) {
+                    positiveCount++;
+                } else if (negativeWords.contains(word)) {
+                    negativeCount++;
+                }
+            }
+        }
+
+        double positivePercent = (double) positiveCount / totalCount;
+        double negativePercent = (double) negativeCount / totalCount;
+
+        System.out.println("\nSentiment Report for " + filename + ":");
+        System.out.println("There were " + positiveCount + " positive words, " + negativeCount + " negative words and " + totalCount + " total words.");
+        System.out.println("That's " + String.format("%.2f", positivePercent * 100) + "% positive and " + String.format("%.2f", negativePercent * 100) + "% negative.");
+
+        if (positivePercent >= negativePercent + 0.05) {
+            System.out.println("Overall the file's sentiment was positive.");
+        } else if (negativePercent >= positivePercent + 0.05) {
+            System.out.println("Overall the file's sentiment was negative.");
+        } else {
+            System.out.println("Overall the file's sentiment was neutral.");
+        }
+
+    } catch (FileNotFoundException e) {
+        System.out.println("File not found: " + filename);
+    }
+}
+```
+
+### Explanation
+
+- **Sentiment Analysis**: 
+  - The `analyzeFile` method reads through each word in the specified `filename`, counting occurrences of positive and negative words from `positiveWords` and `negativeWords`.
+  - It calculates percentages of positive and negative words relative to the total words in the file.
+  - It determines the overall sentiment of the file based on the calculated percentages.
+
+
 ## Instructions for Running the Project
 
-1. Ensure you have all four Java files (`Main.java`, `Suitor.java`, `HauntedHouse.java`, `Sentiment.java`) in the same directory.
+1. Ensure you have all four Java files (`Main.java`, `Suitor.java`, `HauntedHouse.java`, `Sentiment.java` as well as the `.txt` files avaliable) in the same directory.
 2. Compile the files using the Java compiler:
    ```sh
    javac Main.java Suitor.java HauntedHouse.java Sentiment.java
@@ -322,5 +594,5 @@ public class Sentiment {
 
 ---
 
-This README provides an overview of the CSC205 final project, including the main program and detailed requirements for each mini-project. Follow the instructions to implement the necessary functionality and test your program thoroughly. Good luck!
-```
+This README provides an overview of the CSC205 final project, including the main program and the detailed requirements for each mini-project. Under my project, I obtained a 100% on the final! 
+
