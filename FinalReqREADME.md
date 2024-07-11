@@ -114,7 +114,7 @@ public class Suitor {
 }
 ```
 
-```markdown
+
 # Suitor.java Explanation
 
 The `Suitor.java` file implements an algorithm to determine which suitor will marry Prince Val in the city of Atlantis. Below is an explanation of how the code works and what each part does:
