@@ -464,7 +464,7 @@ public class Sentiment {
 }
 ```
 
-## Sentiment.java Explanation
+# Sentiment.java Explanation
 
 The `Sentiment.java` file performs sentiment analysis on text files using predefined sets of positive and negative words.
 
