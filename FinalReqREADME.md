@@ -114,6 +114,111 @@ public class Suitor {
 }
 ```
 
+```markdown
+# Suitor.java Explanation
+
+The `Suitor.java` file implements an algorithm to determine which suitor will marry Prince Val in the city of Atlantis. Below is an explanation of how the code works and what each part does:
+
+## Inner Class `SuitorNode`
+
+```java
+static class SuitorNode {
+    int number;
+    String name;
+    SuitorNode next;
+
+    public SuitorNode(int number, String name) {
+        this.number = number;
+        this.name = name;
+        this.next = null;
+    }
+}
+```
+
+- `SuitorNode` represents each suitor in the linked list. It stores the suitor's number, name, and a reference to the next suitor in the list.
+
+## `start` Method
+
+```java
+public static void start(Scanner scnr) {
+    System.out.println("\nSelect the suitor.");
+
+    // Get the number of suitors
+    System.out.print("Enter the number of Suitors: ");
+    int n = Integer.parseInt(scnr.nextLine());
+
+    // Handle negative inputs
+    if (n <= 0) {
+        System.out.println("Number of suitors should be positive.");
+        return;
+    }
+
+    // Initialize data structures
+    HashMap<Integer, String> suitorNames = new HashMap<>();
+    SuitorNode head = null;
+    SuitorNode tail = null;
+
+    // Get the names of the suitors and create the linked list
+    for (int i = 1; i <= n; i++) {
+        System.out.print("Enter name of Suitor #" + i + ": ");
+        String name = scnr.nextLine();
+        suitorNames.put(i, name);
+        SuitorNode newSuitor = new SuitorNode(i, name);
+        if (head == null) {
+            head = newSuitor;
+            tail = newSuitor;
+        } else {
+            tail.next = newSuitor;
+            tail = newSuitor;
+        }
+    }
+    
+    // Close the circular linked list
+    if (tail != null) {
+        tail.next = head;
+    }
+
+    // Start elimination process
+    SuitorNode current = head;
+    SuitorNode prev = tail;
+
+    while (current.next != current) {
+        // Count three nodes to find the one to eliminate
+        for (int count = 1; count < 3; count++) {
+            prev = current;
+            current = current.next;
+        }
+
+        // Eliminate the current node
+        System.out.println("Suitor #" + current.number + ", " + current.name + ", is now eliminated.");
+        prev.next = current.next;
+        current = current.next;
+    }
+
+    // Display the selected suitor
+    System.out.println("\nThe correct suitor was #" + current.number + ", " + current.name + ".");
+}
+```
+
+### Explanation
+
+1. **Initialization**: 
+   - The method starts by prompting the user for the number of suitors and their names, storing them in a `HashMap` (`suitorNames`) and a circular linked list (`head`, `tail`).
+
+2. **Circular Linked List**: 
+   - The suitors are arranged in a circular linked list where each `SuitorNode` points to the next, and the last points back to the first (`tail.next = head`).
+
+3. **Elimination Process**: 
+   - Using a loop, the method iterates through the linked list, eliminating every third suitor until only one remains (`current.next == current`).
+
+4. **Output**: 
+   - Throughout the process, the program prints which suitor is eliminated and finally displays the selected suitor who will marry Prince Val.
+
+---
+
+This explanation provides a detailed overview of how the `Suitor.java` file implements the selection process for Prince Val's suitor using a circular linked list and an elimination algorithm.
+```
+
 ## HauntedHouse.java
 
 This mini-project simulates a haunted house where the user must navigate through rooms to find the exit.
